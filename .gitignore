@@ -30,3 +30,37 @@
 *.exe
 *.out
 *.app
+
+# CLion specific
+.idea/
+*.iml
+
+# Directory for CMake build outputs
+cmake-build-*/
+
+# If using the CMake server-mode, block its cache directory
+.cmake/api/v1/query/
+.cmake/api/v1/reply/
+
+# Exclude all local history of source files
+.history/
+
+# Ignore specific file patterns
+*.o
+*.a
+*.so
+*~
+
+# Ignore other files that are often generated
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+Testing/
+
+# Ignore specific directories
+bin/
+lib/
