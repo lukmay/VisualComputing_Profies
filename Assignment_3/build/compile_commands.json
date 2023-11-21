@@ -1,0 +1,147 @@
+[
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/assignment_1.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/assignment_1.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/assignment_1.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/math/matrix3d.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/matrix3d.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/matrix3d.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/math/matrix4d.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/matrix4d.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/matrix4d.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/math/vector2d.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector2d.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector2d.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/math/vector3d.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector3d.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector3d.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/math/vector4d.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector4d.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/math/vector4d.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/mygl/base.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/base.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/base.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/mygl/camera.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/camera.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/camera.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/mygl/mesh.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/mesh.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/mesh.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/mygl/shader.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/shader.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/mygl/shader.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g -Wall -ggdb -O0 -o CMakeFiles/assignment_01.dir/src/water.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/water.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/src/water.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glad",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/include -g  -w -Wall -ggdb -O0 -o CMakeFiles/glad.dir/src/glad.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/src/glad.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glad/src/glad.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/stb_image",
+  "command": "/usr/bin/c++  -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/.. -g  -w -Wall -ggdb -O0 -o CMakeFiles/stb_image.dir/stb_impl.cpp.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/stb_impl.cpp",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/stb_image/stb_impl.cpp"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/context.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/context.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/context.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/init.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/init.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/init.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/input.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/input.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/input.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/monitor.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/monitor.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/monitor.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/vulkan.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/vulkan.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/vulkan.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/window.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/window.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/window.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/x11_init.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_init.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_init.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/x11_monitor.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_monitor.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_monitor.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/x11_window.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_window.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/x11_window.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/xkb_unicode.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/xkb_unicode.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/xkb_unicode.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/posix_time.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/posix_time.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/posix_time.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/posix_thread.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/posix_thread.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/posix_thread.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/glx_context.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/glx_context.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/glx_context.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/egl_context.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/egl_context.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/egl_context.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/osmesa_context.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/osmesa_context.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/osmesa_context.c"
+},
+{
+  "directory": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src",
+  "command": "/usr/bin/gcc-12 -D_GLFW_USE_CONFIG_H -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/include -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src -I/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src -g -fPIC  -w -Wall -ggdb -O0 -std=gnu99 -o CMakeFiles/glfw.dir/linux_joystick.c.o -c /home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/linux_joystick.c",
+  "file": "/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/external/glfw/src/linux_joystick.c"
+}
+]

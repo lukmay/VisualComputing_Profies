@@ -1,0 +1,16 @@
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/CMakeFiles/assignment_01.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/CMakeFiles/assignment_01_copy_shader.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/CMakeFiles/edit_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/CMakeFiles/rebuild_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glad/CMakeFiles/glad.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glad/CMakeFiles/edit_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glad/CMakeFiles/rebuild_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/stb_image/CMakeFiles/stb_image.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/stb_image/CMakeFiles/edit_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/stb_image/CMakeFiles/rebuild_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/CMakeFiles/edit_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/CMakeFiles/rebuild_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src/CMakeFiles/update_mappings.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src/CMakeFiles/glfw.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src/CMakeFiles/edit_cache.dir
+/home/stefan/Dokumente/Studium_Informatik/Semester_7/PS_Computer_Grafic/Assignment_3/build/external/glfw/src/CMakeFiles/rebuild_cache.dir
