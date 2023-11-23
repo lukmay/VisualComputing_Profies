@@ -115,6 +115,13 @@ struct {
   bool buttonPressed[4] = {false, false, false, false};
 } sInput;
 
+struct BoatState {
+  Vector3D position;
+  float orientation;
+
+  BoatState() : position(0.0f, 0.0f, 0.0f), orientation(0.0f) {}
+} boatState;
+
 /* GLFW callback function for keyboard events */
 void keyCallback(GLFWwindow* window, int key, int scancode, int action,
                  int mods) {
@@ -272,91 +279,41 @@ void updateWater(float dt) {
   sScene.water.mesh = meshCreate(sScene.water.vertices, grid::indices,
                                  GL_DYNAMIC_DRAW, GL_STATIC_DRAW);
 }
+
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
 void sceneUpdate(float dt) {
-  /* if 'w' or 's' pressed, cube should rotate around x axis */
-  int movingDirX = 0;
-  if (sInput.buttonPressed[0]) {
-    movingDirX = -1;
-  } else if (sInput.buttonPressed[1]) {
-    movingDirX = 1;
+  // Speed of the boat
+  const float speed = 5.0f;
+  const float rotationSpeed = M_PI; // radians per second
+
+  // Update boat orientation and position based on input
+  if (sInput.buttonPressed[0]) { // W (Forward)
+    boatState.position.x += cos(boatState.orientation) * speed * dt; // Forward direction
+    boatState.position.z += sin(boatState.orientation) * speed * dt; // Forward direction
+  }
+  if (sInput.buttonPressed[1]) { // S (Backward)
+    boatState.position.x -= cos(boatState.orientation) * speed * dt; // Backward direction
+    boatState.position.z -= sin(boatState.orientation) * speed * dt; // Backward direction
+  }
+  if (sInput.buttonPressed[2]) { // A (Turn Left)
+    boatState.orientation -= rotationSpeed * dt;
+  }
+  if (sInput.buttonPressed[3]) { // D (Turn Right)
+    boatState.orientation += rotationSpeed * dt;
   }
 
-  /* if 'a' or 'd' pressed, cube should rotate around y axis */
-  int rotationDirY = 0;
-  if (sInput.buttonPressed[2]) {
-    rotationDirY = 1;
-  } else if (sInput.buttonPressed[3]) {
-    rotationDirY = -1;
-  }
+  // Update transformation matrices for boat components
+  Matrix4D rotationMatrix = Matrix4D::rotationY(-boatState.orientation);
+  Matrix4D translationMatrix = Matrix4D::translation(boatState.position);
 
-  /* udpate cube transformation matrix to include new rotation if one of the keys was pressed  || */
-  if (rotationDirY != 0) {
-    sScene.bodyTransformationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.bodySpinRadPerSecond * dt) *
-        Matrix4D::rotationX(movingDirX * sScene.bodySpinRadPerSecond * dt) *
-        sScene.bodyTransformationMatrix;
-    sScene.mastTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.mastSpinRadPerSecond * dt) *
-        Matrix4D::rotationX(movingDirX * sScene.mastSpinRadPerSecond * dt) *
-        sScene.mastTranslationMatrix;
-    sScene.bridgeTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.bridgeSpinRadPerSecond * dt) *
-        Matrix4D::rotationX(movingDirX * sScene.bridgeSpinRadPerSecond * dt) *
-        sScene.bridgeTranslationMatrix;
-    sScene.frontblankTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.frontblankSpinRadPerSecond *
-                            dt) *
-        Matrix4D::rotationX(movingDirX * sScene.frontblankSpinRadPerSecond *
-                            dt) *
-        sScene.frontblankTranslationMatrix;
-    sScene.backblankTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.backblankSpinRadPerSecond *
-                            dt) *
-        Matrix4D::rotationX(movingDirX * sScene.backblankSpinRadPerSecond *
-                            dt) *
-        sScene.backblankTranslationMatrix;
-    sScene.leftblankeTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.leftblankeSpinRadPerSecond *
-                            dt) *
-        Matrix4D::rotationX(movingDirX * sScene.leftblankeSpinRadPerSecond *
-                            dt) *
-        sScene.leftblankeTranslationMatrix;
-    sScene.rightblankeTranslationMatrix =
-        Matrix4D::rotationY(rotationDirY * sScene.rightblankeSpinRadPerSecond *
-                            dt) *
-        Matrix4D::rotationX(movingDirX * sScene.rightblankeSpinRadPerSecond *
-                            dt) *
-        sScene.rightblankeTranslationMatrix;
-    //------------------------------------------------------------------------------set other cubes
-  }
-  if (movingDirX != 0 && rotationDirY == 0) {
-    sScene.bodyTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.bodySpinRadPerSecond * dt) *
-        sScene.bodyTranslationMatrix;
-    sScene.mastTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.mastSpinRadPerSecond * dt) *
-        sScene.mastTranslationMatrix;
-    sScene.bridgeTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.bridgeSpinRadPerSecond * dt) *
-        sScene.bridgeTranslationMatrix;
-    sScene.frontblankTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.frontblankSpinRadPerSecond *
-                              dt) *
-        sScene.frontblankTranslationMatrix;
-    sScene.backblankTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.backblankSpinRadPerSecond *
-                              dt) *
-        sScene.backblankTranslationMatrix;
-    sScene.leftblankeTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.leftblankeSpinRadPerSecond *
-                              dt) *
-        sScene.leftblankeTranslationMatrix;
-    sScene.rightblankeTranslationMatrix =
-        Matrix4D::translation(movingDirX * sScene.rightblankeSpinRadPerSecond *
-                              dt) *
-        sScene.rightblankeTranslationMatrix;
-  }
+  sScene.bodyTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.mastTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.backblankTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.frontblankTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.leftblankeTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.rightblankeTransformationMatrix = translationMatrix * rotationMatrix;
+  sScene.bridgeTransformationMatrix = translationMatrix * rotationMatrix;
+
 }
 
 /* function to draw all objects in the scene */
@@ -380,8 +337,8 @@ void sceneDraw() {
 
     /* draw cube, requires to calculate the final model matrix from all transformations */
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.bodyTransformationMatrix *
                   sScene.bodyTranslationMatrix *
-                      sScene.bodyTransformationMatrix *
                       sScene.bodyScalingMatrix);
     glBindVertexArray(sScene.bodyMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.bodyMesh.size_ibo, GL_UNSIGNED_INT,
@@ -389,8 +346,8 @@ void sceneDraw() {
 
     /*draw mast*/
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.mastTransformationMatrix *
                   sScene.mastTranslationMatrix *
-                      sScene.mastTransformationMatrix *
                       sScene.mastScalingMatrix);
     glBindVertexArray(sScene.mastMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.mastMesh.size_ibo, GL_UNSIGNED_INT,
@@ -398,8 +355,8 @@ void sceneDraw() {
 
     /* draw backblanke */
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.backblankTransformationMatrix *
                   sScene.backblankTranslationMatrix *
-                      sScene.backblankTransformationMatrix *
                       sScene.backblankScalingMatrix);
     glBindVertexArray(sScene.backblankMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.backblankMesh.size_ibo, GL_UNSIGNED_INT,
@@ -407,8 +364,8 @@ void sceneDraw() {
 
     /*draw frontblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.frontblankTransformationMatrix *
                   sScene.frontblankTranslationMatrix *
-                      sScene.frontblankTransformationMatrix *
                       sScene.frontblankScalingMatrix);
     glBindVertexArray(sScene.frontblankMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.frontblankMesh.size_ibo,
@@ -416,8 +373,8 @@ void sceneDraw() {
 
     /* draw rigthblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.rightblankeTransformationMatrix *
                   sScene.rightblankeTranslationMatrix *
-                      sScene.rightblankeTransformationMatrix *
                       sScene.rightblankeScalingMatrix);
     glBindVertexArray(sScene.rightblankeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.rightblankeMesh.size_ibo,
@@ -425,8 +382,8 @@ void sceneDraw() {
 
     /*draw leftblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.leftblankeTransformationMatrix *
                   sScene.leftblankeTranslationMatrix *
-                      sScene.leftblankeTransformationMatrix *
                       sScene.leftblankeScalingMatrix);
     glBindVertexArray(sScene.leftblankeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.leftblankeMesh.size_ibo,
@@ -434,8 +391,8 @@ void sceneDraw() {
 
     /* draw cabine*/
     shaderUniform(sScene.shaderColor, "uModel",
+                  sScene.bridgeTransformationMatrix *
                   sScene.bridgeTranslationMatrix *
-                      sScene.bridgeTransformationMatrix *
                       sScene.bridgeScalingMatrix);
     glBindVertexArray(sScene.bridgeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.bridgeMesh.size_ibo, GL_UNSIGNED_INT,
