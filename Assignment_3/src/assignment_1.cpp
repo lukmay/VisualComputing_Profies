@@ -280,6 +280,20 @@ void updateWater(float dt) {
                                  GL_DYNAMIC_DRAW, GL_STATIC_DRAW);
 }
 
+// Funcion to calculate the hight of the water on a given Point and substracts a given offset.
+float calculateWaterHeightAtPosition(const Vector3D& position, float time, float offset) {
+  float height = 0.0f;
+  for (size_t i = 0; i < 3; i++) {
+    height += sScene.waterSim.parameter[i].amplitude *
+              sin(sScene.waterSim.parameter[i].omega *
+                      dot(Vector2D{position.x, position.z},
+                          sScene.waterSim.parameter[i].direction) +
+                  time * sScene.waterSim.parameter[i].phi);
+  }
+  return height - offset;
+}
+
+
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
 void sceneUpdate(float dt) {
   // Speed of the boat
@@ -301,6 +315,10 @@ void sceneUpdate(float dt) {
   if (sInput.buttonPressed[3]) { // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
   }
+
+  // Place the boat on top of the water
+  float waterHeight = calculateWaterHeightAtPosition(boatState.position, sScene.waterSim.accumTime, 0.6f);
+  boatState.position.y = waterHeight;
 
   // Update transformation matrices for boat components
   Matrix4D rotationMatrix = Matrix4D::rotationY(-boatState.orientation);
