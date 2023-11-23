@@ -281,7 +281,8 @@ void updateWater(float dt) {
 }
 
 // Funcion to calculate the hight of the water on a given Point and substracts a given offset.
-float calculateWaterHeightAtPosition(const Vector3D& position, float time, float offset) {
+float calculateWaterHeightAtPosition(const Vector3D& position, float time,
+                                     float offset) {
   float height = 0.0f;
   for (size_t i = 0; i < 3; i++) {
     height += sScene.waterSim.parameter[i].amplitude *
@@ -293,31 +294,35 @@ float calculateWaterHeightAtPosition(const Vector3D& position, float time, float
   return height - offset;
 }
 
-
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
 void sceneUpdate(float dt) {
   // Speed of the boat
   const float speed = 5.0f;
-  const float rotationSpeed = M_PI; // radians per second
+  const float rotationSpeed = M_PI;  // radians per second
 
   // Update boat orientation and position based on input
-  if (sInput.buttonPressed[0]) { // W (Forward)
-    boatState.position.x += cos(boatState.orientation) * speed * dt; // Forward direction
-    boatState.position.z += sin(boatState.orientation) * speed * dt; // Forward direction
+  if (sInput.buttonPressed[0]) {  // W (Forward)
+    boatState.position.x +=
+        cos(boatState.orientation) * speed * dt;  // Forward direction
+    boatState.position.z +=
+        sin(boatState.orientation) * speed * dt;  // Forward direction
   }
-  if (sInput.buttonPressed[1]) { // S (Backward)
-    boatState.position.x -= cos(boatState.orientation) * speed * dt; // Backward direction
-    boatState.position.z -= sin(boatState.orientation) * speed * dt; // Backward direction
+  if (sInput.buttonPressed[1]) {  // S (Backward)
+    boatState.position.x -=
+        cos(boatState.orientation) * speed * dt;  // Backward direction
+    boatState.position.z -=
+        sin(boatState.orientation) * speed * dt;  // Backward direction
   }
-  if (sInput.buttonPressed[2]) { // A (Turn Left)
+  if (sInput.buttonPressed[2]) {  // A (Turn Left)
     boatState.orientation -= rotationSpeed * dt;
   }
-  if (sInput.buttonPressed[3]) { // D (Turn Right)
+  if (sInput.buttonPressed[3]) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
   }
 
   // Place the boat on top of the water
-  float waterHeight = calculateWaterHeightAtPosition(boatState.position, sScene.waterSim.accumTime, 0.6f);
+  float waterHeight = calculateWaterHeightAtPosition(
+      boatState.position, sScene.waterSim.accumTime, 0.6f);
   boatState.position.y = waterHeight;
 
   // Update transformation matrices for boat components
@@ -331,7 +336,6 @@ void sceneUpdate(float dt) {
   sScene.leftblankeTransformationMatrix = translationMatrix * rotationMatrix;
   sScene.rightblankeTransformationMatrix = translationMatrix * rotationMatrix;
   sScene.bridgeTransformationMatrix = translationMatrix * rotationMatrix;
-
 }
 
 /* function to draw all objects in the scene */
@@ -356,8 +360,7 @@ void sceneDraw() {
     /* draw cube, requires to calculate the final model matrix from all transformations */
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.bodyTransformationMatrix *
-                  sScene.bodyTranslationMatrix *
-                      sScene.bodyScalingMatrix);
+                      sScene.bodyTranslationMatrix * sScene.bodyScalingMatrix);
     glBindVertexArray(sScene.bodyMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.bodyMesh.size_ibo, GL_UNSIGNED_INT,
                    nullptr);
@@ -365,8 +368,7 @@ void sceneDraw() {
     /*draw mast*/
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.mastTransformationMatrix *
-                  sScene.mastTranslationMatrix *
-                      sScene.mastScalingMatrix);
+                      sScene.mastTranslationMatrix * sScene.mastScalingMatrix);
     glBindVertexArray(sScene.mastMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.mastMesh.size_ibo, GL_UNSIGNED_INT,
                    nullptr);
@@ -374,7 +376,7 @@ void sceneDraw() {
     /* draw backblanke */
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.backblankTransformationMatrix *
-                  sScene.backblankTranslationMatrix *
+                      sScene.backblankTranslationMatrix *
                       sScene.backblankScalingMatrix);
     glBindVertexArray(sScene.backblankMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.backblankMesh.size_ibo, GL_UNSIGNED_INT,
@@ -383,7 +385,7 @@ void sceneDraw() {
     /*draw frontblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.frontblankTransformationMatrix *
-                  sScene.frontblankTranslationMatrix *
+                      sScene.frontblankTranslationMatrix *
                       sScene.frontblankScalingMatrix);
     glBindVertexArray(sScene.frontblankMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.frontblankMesh.size_ibo,
@@ -392,7 +394,7 @@ void sceneDraw() {
     /* draw rigthblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.rightblankeTransformationMatrix *
-                  sScene.rightblankeTranslationMatrix *
+                      sScene.rightblankeTranslationMatrix *
                       sScene.rightblankeScalingMatrix);
     glBindVertexArray(sScene.rightblankeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.rightblankeMesh.size_ibo,
@@ -401,7 +403,7 @@ void sceneDraw() {
     /*draw leftblanke*/
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.leftblankeTransformationMatrix *
-                  sScene.leftblankeTranslationMatrix *
+                      sScene.leftblankeTranslationMatrix *
                       sScene.leftblankeScalingMatrix);
     glBindVertexArray(sScene.leftblankeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.leftblankeMesh.size_ibo,
@@ -410,7 +412,7 @@ void sceneDraw() {
     /* draw cabine*/
     shaderUniform(sScene.shaderColor, "uModel",
                   sScene.bridgeTransformationMatrix *
-                  sScene.bridgeTranslationMatrix *
+                      sScene.bridgeTranslationMatrix *
                       sScene.bridgeScalingMatrix);
     glBindVertexArray(sScene.bridgeMesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.bridgeMesh.size_ibo, GL_UNSIGNED_INT,
