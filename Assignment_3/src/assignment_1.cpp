@@ -280,7 +280,7 @@ void updateWater(float dt) {
                                  GL_DYNAMIC_DRAW, GL_STATIC_DRAW);
 }
 
-// Funcion to calculate the hight of the water on a given Point and substracts a given offset.
+// Function to calculate the height of the water on a given Point and subtracts a given offset.
 float calculateWaterHeightAtPosition(const Vector3D& position, float time,
                                      float offset) {
   float height = 0.0f;
@@ -297,8 +297,8 @@ float calculateWaterHeightAtPosition(const Vector3D& position, float time,
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
 void sceneUpdate(float dt) {
   // Speed of the boat
-  const float speed = 5.0f;
-  const float rotationSpeed = M_PI;  // radians per second
+  const float speed = 3.5f;
+  const float rotationSpeed = M_PI / 4;  // radians per second
 
   // Update boat orientation and position based on input
   if (sInput.buttonPressed[0]) {  // W (Forward)
@@ -313,10 +313,10 @@ void sceneUpdate(float dt) {
     boatState.position.z -=
         sin(boatState.orientation) * speed * dt;  // Backward direction
   }
-  if (sInput.buttonPressed[2]) {  // A (Turn Left)
+  if (sInput.buttonPressed[2] && (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // A (Turn Left)
     boatState.orientation -= rotationSpeed * dt;
   }
-  if (sInput.buttonPressed[3]) {  // D (Turn Right)
+  if (sInput.buttonPressed[3]&& (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
   }
 
@@ -460,7 +460,7 @@ int main(int argc, char** argv) {
     /* update model matrix of cube */
     timeStampNew = glfwGetTime();
     if (iteration <
-        1000)  // TODO : Remove this when implementation is finished.
+        1000000)  // TODO : Remove this when implementation is finished.
     {
       updateWater(timeStampNew - timeStamp);
       sceneUpdate(timeStampNew - timeStamp);
