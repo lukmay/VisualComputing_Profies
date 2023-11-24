@@ -70,43 +70,36 @@ struct {
   Matrix4D bodyScalingMatrix;
   Matrix4D bodyTranslationMatrix;
   Matrix4D bodyTransformationMatrix;
-  float bodySpinRadPerSecond;
   /*mast mesh transformation*/
   Mesh mastMesh;
   Matrix4D mastScalingMatrix;
   Matrix4D mastTranslationMatrix;
   Matrix4D mastTransformationMatrix;
-  float mastSpinRadPerSecond;
   /* frontblank mesh and transformations */
   Mesh frontblankMesh;
   Matrix4D frontblankScalingMatrix;
   Matrix4D frontblankTranslationMatrix;
   Matrix4D frontblankTransformationMatrix;
-  float frontblankSpinRadPerSecond;
   /*backblank mesh transformation*/
   Mesh backblankMesh;
   Matrix4D backblankScalingMatrix;
   Matrix4D backblankTranslationMatrix;
   Matrix4D backblankTransformationMatrix;
-  float backblankSpinRadPerSecond;
   /* leftblanke mesh and transformations */
   Mesh leftblankeMesh;
   Matrix4D leftblankeScalingMatrix;
   Matrix4D leftblankeTranslationMatrix;
   Matrix4D leftblankeTransformationMatrix;
-  float leftblankeSpinRadPerSecond;
   /*rightblanke mesh transformation*/
   Mesh rightblankeMesh;
   Matrix4D rightblankeScalingMatrix;
   Matrix4D rightblankeTranslationMatrix;
   Matrix4D rightblankeTransformationMatrix;
-  float rightblankeSpinRadPerSecond;
   /*bridge mesh transformation*/
   Mesh bridgeMesh;
   Matrix4D bridgeScalingMatrix;
   Matrix4D bridgeTranslationMatrix;
   Matrix4D bridgeTransformationMatrix;
-  float bridgeSpinRadPerSecond;
 
   /* shader */
   ShaderProgram shaderColor;
@@ -257,14 +250,6 @@ void sceneInit(float width, float height) {
   sScene.bridgeScalingMatrix = bridge::scale;
   sScene.bridgeTranslationMatrix = bridge::trans;
   sScene.bridgeTransformationMatrix = Matrix4D::identity();
-
-  sScene.bodySpinRadPerSecond = M_PI / 2.0f;
-  sScene.mastSpinRadPerSecond = M_PI / 2.0f;
-  sScene.backblankSpinRadPerSecond = M_PI / 2.0f;
-  sScene.frontblankSpinRadPerSecond = M_PI / 2.0f;
-  sScene.leftblankeSpinRadPerSecond = M_PI / 2.0f;
-  sScene.rightblankeSpinRadPerSecond = M_PI / 2.0f;
-  sScene.bridgeSpinRadPerSecond = M_PI / 2.0f;
 
   /* load shader from file */
   sScene.shaderColor = shaderLoad("shader/default.vert", "shader/default.frag");
