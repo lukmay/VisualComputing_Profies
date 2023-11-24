@@ -50,10 +50,14 @@ const Vector4D color = {1.0, 1.0, 1.0, 1.0f};                 //R,G,B
 const Matrix4D scale = Matrix4D::scale(0.65f, 0.9f, 0.375f);  //x,z,y
 const Matrix4D trans = Matrix4D::translation({-1.5f, 2.55f, 0.0f});
 }  // namespace bridge
+
+enum CameraMode { ORBIT, FOLLOW };
+
 /* struct holding all necessary state variables for scene */
 struct {
   /* camera */
   Camera camera;
+  CameraMode cameraMode = ORBIT;
   float zoomSpeedMultiplier;
 
   /* water */
@@ -112,7 +116,7 @@ struct {
 struct {
   bool mouseLeftButtonPressed = false;
   Vector2D mousePressStart;
-  bool buttonPressed[4] = {false, false, false, false};
+  bool buttonPressed[6] = {false, false, false, false, false, false};
 } sInput;
 
 struct BoatState {
@@ -149,6 +153,14 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action,
   }
   if (key == GLFW_KEY_D) {
     sInput.buttonPressed[3] = (action == GLFW_PRESS || action == GLFW_REPEAT);
+  }
+  if (key == GLFW_KEY_1) {
+    sInput.buttonPressed[4] = (action == GLFW_PRESS);
+    sScene.cameraMode = ORBIT;
+  }
+  if (key == GLFW_KEY_2) {
+    sInput.buttonPressed[5] = (action == GLFW_PRESS);
+    sScene.cameraMode = FOLLOW;
   }
 }
 
@@ -321,11 +333,25 @@ void sceneUpdate(float dt) {
       (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
   }
+  if (sInput.buttonPressed[4]) {
+    sScene.camera =
+        cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
+                     {sScene.camera.position}, {sScene.camera.lookAt});
+  }
+  if (sInput.buttonPressed[5]) {
+    sScene.camera =
+        cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
+                     {sScene.camera.position}, {boatState.position});
+  }
+  if (sScene.cameraMode == FOLLOW) {
+    sScene.camera.position += boatState.position - sScene.camera.lookAt;
+    sScene.camera.lookAt = boatState.position;
+  }
 
   // Place the boat on top of the water
-  float waterHeight = calculateWaterHeightAtPosition(
+  float waterHeightCenter = calculateWaterHeightAtPosition(
       boatState.position, sScene.waterSim.accumTime, 0.6f);
-  boatState.position.y = waterHeight;
+  boatState.position.y = waterHeightCenter;
 
   // Update transformation matrices for boat components
   Matrix4D rotationMatrix = Matrix4D::rotationY(-boatState.orientation);
