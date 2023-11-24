@@ -136,7 +136,6 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action,
   if (key == GLFW_KEY_P && action == GLFW_PRESS) {
     screenshotToPNG("screenshot.png");
   }
-
   /* input for cube control */
   if (key == GLFW_KEY_W) {
     sInput.buttonPressed[0] = (action == GLFW_PRESS || action == GLFW_REPEAT);
@@ -299,6 +298,7 @@ void sceneUpdate(float dt) {
   // Speed of the boat
   const float speed = 3.5f;
   const float rotationSpeed = M_PI / 4;  // radians per second
+  updateWater(dt);
 
   // Update boat orientation and position based on input
   if (sInput.buttonPressed[0]) {  // W (Forward)
@@ -313,10 +313,12 @@ void sceneUpdate(float dt) {
     boatState.position.z -=
         sin(boatState.orientation) * speed * dt;  // Backward direction
   }
-  if (sInput.buttonPressed[2] && (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // A (Turn Left)
+  if (sInput.buttonPressed[2] &&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // A (Turn Left)
     boatState.orientation -= rotationSpeed * dt;
   }
-  if (sInput.buttonPressed[3]&& (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
+  if (sInput.buttonPressed[3] &&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
   }
 
@@ -451,7 +453,6 @@ int main(int argc, char** argv) {
   /*-------------- main loop ----------------*/
   double timeStamp = glfwGetTime();
   double timeStampNew = 0.0;
-  int iteration = 0;
   /* loop until user closes window */
   while (!glfwWindowShouldClose(window)) {
     /* poll and process input and window events */
@@ -459,14 +460,8 @@ int main(int argc, char** argv) {
 
     /* update model matrix of cube */
     timeStampNew = glfwGetTime();
-    if (iteration <
-        1000000)  // TODO : Remove this when implementation is finished.
-    {
-      updateWater(timeStampNew - timeStamp);
-      sceneUpdate(timeStampNew - timeStamp);
-      timeStamp = timeStampNew;
-      iteration++;
-    }
+    sceneUpdate(timeStampNew - timeStamp);
+    timeStamp = timeStampNew;
 
     /* draw all objects in the scene */
     sceneDraw();
