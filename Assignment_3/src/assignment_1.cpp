@@ -14,7 +14,7 @@ const Vector4D color = {0.0f, 0.0f, 0.35f, 1.0f};
 const Matrix4D trans = Matrix4D::identity();
 }  // namespace waterPlane
 
-/* translation and scale for the scaled boad */
+/* translation and scale for the scaled boat */
 namespace body {
 const Vector4D color = {0.82, 0.41, 0.12,
                         1.0f};  //R,G,B 210/255 105/255  30/255
@@ -338,8 +338,34 @@ void sceneUpdate(float dt) {
       boatState.position, sScene.waterSim.accumTime, 0.6f);
   boatState.position.y = waterHeightCenter;
 
+  /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
+  Then let the boat rotate around the z-axis using this difference. */
+  float heightAtPoint1X = calculateWaterHeightAtPosition(
+      {boatState.position.x + 0.5f, boatState.position.y, boatState.position.z},
+      sScene.waterSim.accumTime, 0.6f);
+  float heightAtPoint2X = calculateWaterHeightAtPosition(
+      {boatState.position.x - 0.5f, boatState.position.y, boatState.position.z},
+      sScene.waterSim.accumTime, 0.6f);
+  float heightDiffX = boatState.orientation >= 0
+                          ? heightAtPoint1X - heightAtPoint2X
+                          : heightAtPoint2X - heightAtPoint1X;
+
+  /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
+  Then let the boat rotate around the z-axis using this difference. */
+  float heightAtPoint1Z = calculateWaterHeightAtPosition(
+      {boatState.position.x, boatState.position.y, boatState.position.z + 0.3f},
+      sScene.waterSim.accumTime, 0.6f);
+  float heightAtPoint2Z = calculateWaterHeightAtPosition(
+      {boatState.position.x, boatState.position.y, boatState.position.z - 0.3f},
+      sScene.waterSim.accumTime, 0.6f);
+  float heightDiffZ = boatState.orientation >= 0
+                          ? heightAtPoint1Z - heightAtPoint2Z
+                          : heightAtPoint2Z - heightAtPoint1Z;
+
   // Update transformation matrices for boat components
-  Matrix4D rotationMatrix = Matrix4D::rotationY(-boatState.orientation);
+  Matrix4D rotationMatrix = Matrix4D::rotationZ(heightDiffX) *
+                            Matrix4D::rotationX(heightDiffZ) *
+                            Matrix4D::rotationY(-boatState.orientation);
   Matrix4D translationMatrix = Matrix4D::translation(boatState.position);
 
   sScene.bodyTransformationMatrix = translationMatrix * rotationMatrix;
