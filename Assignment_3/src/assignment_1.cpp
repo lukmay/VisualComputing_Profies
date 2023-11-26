@@ -325,12 +325,12 @@ void sceneUpdate(float dt) {
       boatState.orientation = -M_PI;
     }
   }
-  if (sInput.buttonPressed[4]) { // Change to camera mode ORBIT
+  if (sInput.buttonPressed[4]) {  // Change to camera mode ORBIT
     sScene.camera =
         cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
                      {sScene.camera.position}, {sScene.camera.lookAt});
   }
-  if (sInput.buttonPressed[5]) { // Change to camera mode FOLLOW
+  if (sInput.buttonPressed[5]) {  // Change to camera mode FOLLOW
     sScene.camera =
         cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
                      {sScene.camera.position}, {boatState.position});
@@ -354,9 +354,10 @@ void sceneUpdate(float dt) {
   float heightAtPoint2X = calculateWaterHeightAtPosition(
       {boatState.position.x - 0.5f, boatState.position.y, boatState.position.z},
       sScene.waterSim.accumTime, 0.6f);
-  float heightDiffX = boatState.orientation <= -M_PI && boatState.orientation >= 0.0f
-                          ? heightAtPoint2X - heightAtPoint1X
-                          : heightAtPoint1X - heightAtPoint2X;
+  float heightDiffX =
+      boatState.orientation <= -M_PI && boatState.orientation >= 0.0f
+          ? heightAtPoint2X - heightAtPoint1X
+          : heightAtPoint1X - heightAtPoint2X;
   /* We do not need to calculate the tangens here since difference between the two points is 1.0f
    * => tan = heightDiffX / 1.0f */
 
