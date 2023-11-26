@@ -310,13 +310,19 @@ void sceneUpdate(float dt) {
     boatState.position.z -=
         sin(boatState.orientation) * speed * dt;  // Backward direction
   }
-  if (sInput.buttonPressed[2] &&
-      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // A (Turn Left)
+  if (sInput.buttonPressed[2] /*&&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])*/) {  // A (Turn Left)
     boatState.orientation -= rotationSpeed * dt;
+    if (boatState.orientation <= -M_PI) {
+      boatState.orientation = M_PI;
+    }
   }
-  if (sInput.buttonPressed[3] &&
-      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
+  if (sInput.buttonPressed[3] /*&&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])*/) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
+    if (boatState.orientation >= M_PI) {
+      boatState.orientation = -M_PI;
+    }
   }
   if (sInput.buttonPressed[4]) {
     sScene.camera =
@@ -339,32 +345,46 @@ void sceneUpdate(float dt) {
   boatState.position.y = waterHeightCenter;
 
   /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
-  Then let the boat rotate around the z-axis using this difference. */
+   * Then let the boat rotate around the z-axis using this difference. */
+  float orientation = 0.0f;
+  if (boatState.orientation < 0.0f && boatState.orientation >= -M_PI_2f) {
+    orientation = boatState.orientation;
+  } else if (boatState.orientation < -M_PI_2f) {
+    orientation = boatState.orientation + M_PI_2f;
+  } else if (boatState.orientation > 0.0f && boatState.orientation <= M_PI_2f) {
+    orientation = boatState.orientation;
+  } else if (boatState.orientation > M_PI_2f) {
+    orientation = boatState.orientation - M_PI_2f;
+  }
   float heightAtPoint1X = calculateWaterHeightAtPosition(
       {boatState.position.x + 0.5f, boatState.position.y, boatState.position.z},
       sScene.waterSim.accumTime, 0.6f);
   float heightAtPoint2X = calculateWaterHeightAtPosition(
       {boatState.position.x - 0.5f, boatState.position.y, boatState.position.z},
       sScene.waterSim.accumTime, 0.6f);
-  float heightDiffX = boatState.orientation >= 0
-                          ? heightAtPoint1X - heightAtPoint2X
-                          : heightAtPoint2X - heightAtPoint1X;
+  float heightDiffX = orientation <= -M_PI && orientation >= 0.0f
+                          ? heightAtPoint2X - heightAtPoint1X
+                          : heightAtPoint1X - heightAtPoint2X;
+  /* We do not need to calculate the tangens here since difference between the two points is 1.0f
+   * => tan = heightDiffX / 1.0f */
 
   /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
-  Then let the boat rotate around the z-axis using this difference. */
+   * Then let the boat rotate around the z-axis using the angle that is given by the tangens. */
   float heightAtPoint1Z = calculateWaterHeightAtPosition(
       {boatState.position.x, boatState.position.y, boatState.position.z + 0.3f},
       sScene.waterSim.accumTime, 0.6f);
   float heightAtPoint2Z = calculateWaterHeightAtPosition(
       {boatState.position.x, boatState.position.y, boatState.position.z - 0.3f},
       sScene.waterSim.accumTime, 0.6f);
-  float heightDiffZ = boatState.orientation >= 0
-                          ? heightAtPoint1Z - heightAtPoint2Z
-                          : heightAtPoint2Z - heightAtPoint1Z;
+  float heightDiffZ = heightAtPoint2Z - heightAtPoint1Z;
+  float tangensZ = heightDiffZ / 0.6f;
+
+  printf("boat state orientation: %2f\n", boatState.orientation);
+  printf("orientation: %2f\n", orientation);
 
   // Update transformation matrices for boat components
   Matrix4D rotationMatrix = Matrix4D::rotationZ(heightDiffX) *
-                            Matrix4D::rotationX(heightDiffZ) *
+                            Matrix4D::rotationX(tangensZ) *
                             Matrix4D::rotationY(-boatState.orientation);
   Matrix4D translationMatrix = Matrix4D::translation(boatState.position);
 
