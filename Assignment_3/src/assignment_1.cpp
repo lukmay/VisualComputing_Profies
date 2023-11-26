@@ -51,6 +51,7 @@ const Matrix4D scale = Matrix4D::scale(0.65f, 0.9f, 0.375f);  //x,z,y
 const Matrix4D trans = Matrix4D::translation({-1.5f, 2.55f, 0.0f});
 }  // namespace bridge
 
+/* added second camera mode */
 enum CameraMode { ORBIT, FOLLOW };
 
 /* struct holding all necessary state variables for scene */
@@ -65,37 +66,37 @@ struct {
   Water water;
   Matrix4D waterModelMatrix;
 
-  /* body mesh and transformations */
+  /* body */
   Mesh bodyMesh;
   Matrix4D bodyScalingMatrix;
   Matrix4D bodyTranslationMatrix;
   Matrix4D bodyTransformationMatrix;
-  /*mast mesh transformation*/
+  /* mast */
   Mesh mastMesh;
   Matrix4D mastScalingMatrix;
   Matrix4D mastTranslationMatrix;
   Matrix4D mastTransformationMatrix;
-  /* frontblank mesh and transformations */
+  /* frontblank */
   Mesh frontblankMesh;
   Matrix4D frontblankScalingMatrix;
   Matrix4D frontblankTranslationMatrix;
   Matrix4D frontblankTransformationMatrix;
-  /*backblank mesh transformation*/
+  /* backblank*/
   Mesh backblankMesh;
   Matrix4D backblankScalingMatrix;
   Matrix4D backblankTranslationMatrix;
   Matrix4D backblankTransformationMatrix;
-  /* leftblanke mesh and transformations */
+  /* leftblanke */
   Mesh leftblankeMesh;
   Matrix4D leftblankeScalingMatrix;
   Matrix4D leftblankeTranslationMatrix;
   Matrix4D leftblankeTransformationMatrix;
-  /*rightblanke mesh transformation*/
+  /* rightblanke */
   Mesh rightblankeMesh;
   Matrix4D rightblankeScalingMatrix;
   Matrix4D rightblankeTranslationMatrix;
   Matrix4D rightblankeTransformationMatrix;
-  /*bridge mesh transformation*/
+  /* bridge */
   Mesh bridgeMesh;
   Matrix4D bridgeScalingMatrix;
   Matrix4D bridgeTranslationMatrix;
@@ -265,7 +266,7 @@ void wave(int index, float dt) {
             dt * sScene.waterSim.parameter[waveFuncIndex].phi);
   }
 }
-/*function to update waves of the water*/
+/* function to update waves of the water */
 void updateWater(float dt) {
   sScene.waterSim.accumTime += dt;
   for (size_t i = 0; i < sScene.water.vertices.size(); i++) {
@@ -276,7 +277,7 @@ void updateWater(float dt) {
                                  GL_DYNAMIC_DRAW, GL_STATIC_DRAW);
 }
 
-// Function to calculate the height of the water on a given Point and subtracts a given offset.
+/* function to calculate the height of the water on a given Point and subtracts a given offset. */
 float calculateWaterHeightAtPosition(const Vector3D& position, float time,
                                      float offset) {
   float height = 0.0f;
@@ -292,12 +293,12 @@ float calculateWaterHeightAtPosition(const Vector3D& position, float time,
 
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
 void sceneUpdate(float dt) {
-  // Speed of the boat
+  /* Speed of the boat */
   const float speed = 3.5f;
   const float rotationSpeed = M_PI / 4;  // radians per second
   updateWater(dt);
 
-  // Update boat orientation and position based on input
+  /* Update boat orientation and position based on input */
   if (sInput.buttonPressed[0]) {  // W (Forward)
     boatState.position.x +=
         cos(boatState.orientation) * speed * dt;  // Forward direction
@@ -310,59 +311,50 @@ void sceneUpdate(float dt) {
     boatState.position.z -=
         sin(boatState.orientation) * speed * dt;  // Backward direction
   }
-  if (sInput.buttonPressed[2] /*&&
-      (sInput.buttonPressed[0] || sInput.buttonPressed[1])*/) {  // A (Turn Left)
+  if (sInput.buttonPressed[2] &&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // A (Turn Left)
     boatState.orientation -= rotationSpeed * dt;
     if (boatState.orientation <= -M_PI) {
       boatState.orientation = M_PI;
     }
   }
-  if (sInput.buttonPressed[3] /*&&
-      (sInput.buttonPressed[0] || sInput.buttonPressed[1])*/) {  // D (Turn Right)
+  if (sInput.buttonPressed[3] &&
+      (sInput.buttonPressed[0] || sInput.buttonPressed[1])) {  // D (Turn Right)
     boatState.orientation += rotationSpeed * dt;
     if (boatState.orientation >= M_PI) {
       boatState.orientation = -M_PI;
     }
   }
-  if (sInput.buttonPressed[4]) {
+  if (sInput.buttonPressed[4]) { // Change to camera mode ORBIT
     sScene.camera =
         cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
                      {sScene.camera.position}, {sScene.camera.lookAt});
   }
-  if (sInput.buttonPressed[5]) {
+  if (sInput.buttonPressed[5]) { // Change to camera mode FOLLOW
     sScene.camera =
         cameraCreate(1280, 720, to_radians(45.0f), 0.01f, 500.0f,
                      {sScene.camera.position}, {boatState.position});
   }
+  /* if camera mode is set to FOLLOW, update position */
   if (sScene.cameraMode == FOLLOW) {
     sScene.camera.position += boatState.position - sScene.camera.lookAt;
     sScene.camera.lookAt = boatState.position;
   }
 
-  // Place the boat on top of the water
+  /* Place the boat on top of the water */
   float waterHeightCenter = calculateWaterHeightAtPosition(
       boatState.position, sScene.waterSim.accumTime, 0.6f);
   boatState.position.y = waterHeightCenter;
 
   /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
    * Then let the boat rotate around the z-axis using this difference. */
-  float orientation = 0.0f;
-  if (boatState.orientation < 0.0f && boatState.orientation >= -M_PI_2f) {
-    orientation = boatState.orientation;
-  } else if (boatState.orientation < -M_PI_2f) {
-    orientation = boatState.orientation + M_PI_2f;
-  } else if (boatState.orientation > 0.0f && boatState.orientation <= M_PI_2f) {
-    orientation = boatState.orientation;
-  } else if (boatState.orientation > M_PI_2f) {
-    orientation = boatState.orientation - M_PI_2f;
-  }
   float heightAtPoint1X = calculateWaterHeightAtPosition(
       {boatState.position.x + 0.5f, boatState.position.y, boatState.position.z},
       sScene.waterSim.accumTime, 0.6f);
   float heightAtPoint2X = calculateWaterHeightAtPosition(
       {boatState.position.x - 0.5f, boatState.position.y, boatState.position.z},
       sScene.waterSim.accumTime, 0.6f);
-  float heightDiffX = orientation <= -M_PI && orientation >= 0.0f
+  float heightDiffX = boatState.orientation <= -M_PI && boatState.orientation >= 0.0f
                           ? heightAtPoint2X - heightAtPoint1X
                           : heightAtPoint1X - heightAtPoint2X;
   /* We do not need to calculate the tangens here since difference between the two points is 1.0f
@@ -379,10 +371,7 @@ void sceneUpdate(float dt) {
   float heightDiffZ = heightAtPoint2Z - heightAtPoint1Z;
   float tangensZ = heightDiffZ / 0.6f;
 
-  printf("boat state orientation: %2f\n", boatState.orientation);
-  printf("orientation: %2f\n", orientation);
-
-  // Update transformation matrices for boat components
+  /* update transformation matrices for boat components */
   Matrix4D rotationMatrix = Matrix4D::rotationZ(heightDiffX) *
                             Matrix4D::rotationX(tangensZ) *
                             Matrix4D::rotationY(-boatState.orientation);
