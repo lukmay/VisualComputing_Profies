@@ -3,6 +3,8 @@
 #include "mygl/base.h"
 #include "mygl/mesh.h"
 
+#define WATER_OFFSET 0.6f
+
 struct WaveParams
 {
     float amplitude;

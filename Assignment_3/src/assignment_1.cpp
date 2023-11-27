@@ -278,8 +278,7 @@ void updateWater(float dt) {
 }
 
 /* function to calculate the height of the water on a given Point and subtracts a given offset. */
-float calculateWaterHeightAtPosition(const Vector3D& position, float time,
-                                     float offset) {
+float calculateWaterHeightAtPosition(const Vector3D& position, float time) {
   float height = 0.0f;
   for (size_t i = 0; i < 3; i++) {
     height += sScene.waterSim.parameter[i].amplitude *
@@ -288,7 +287,7 @@ float calculateWaterHeightAtPosition(const Vector3D& position, float time,
                           sScene.waterSim.parameter[i].direction) +
                   time * sScene.waterSim.parameter[i].phi);
   }
-  return height - offset;
+  return height - WATER_OFFSET;
 }
 
 /* function to move and update objects in scene (e.g., rotate cube according to user input) */
@@ -343,17 +342,17 @@ void sceneUpdate(float dt) {
 
   /* Place the boat on top of the water */
   float waterHeightCenter = calculateWaterHeightAtPosition(
-      boatState.position, sScene.waterSim.accumTime, 0.6f);
+      boatState.position, sScene.waterSim.accumTime);
   boatState.position.y = waterHeightCenter;
 
   /* Calculate the height of the boat in two points of the x-axis of the boat and take them to calculate the height difference between them.
    * Then let the boat rotate around the z-axis using this difference. */
   float heightAtPoint1X = calculateWaterHeightAtPosition(
       {boatState.position.x + 0.5f, boatState.position.y, boatState.position.z},
-      sScene.waterSim.accumTime, 0.6f);
+      sScene.waterSim.accumTime);
   float heightAtPoint2X = calculateWaterHeightAtPosition(
       {boatState.position.x - 0.5f, boatState.position.y, boatState.position.z},
-      sScene.waterSim.accumTime, 0.6f);
+      sScene.waterSim.accumTime);
   float heightDiffX =
       boatState.orientation <= -M_PI && boatState.orientation >= 0.0f
           ? heightAtPoint2X - heightAtPoint1X
@@ -365,10 +364,10 @@ void sceneUpdate(float dt) {
    * Then let the boat rotate around the z-axis using the angle that is given by the tangens. */
   float heightAtPoint1Z = calculateWaterHeightAtPosition(
       {boatState.position.x, boatState.position.y, boatState.position.z + 0.3f},
-      sScene.waterSim.accumTime, 0.6f);
+      sScene.waterSim.accumTime);
   float heightAtPoint2Z = calculateWaterHeightAtPosition(
       {boatState.position.x, boatState.position.y, boatState.position.z - 0.3f},
-      sScene.waterSim.accumTime, 0.6f);
+      sScene.waterSim.accumTime);
   float heightDiffZ = heightAtPoint2Z - heightAtPoint1Z;
   float tangensZ = heightDiffZ / 0.6f;
 
