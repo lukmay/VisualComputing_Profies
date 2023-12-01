@@ -117,7 +117,7 @@ void windowResizeCallback(GLFWwindow* window, int width, int height)
 
 void sceneInit(float width, float height)
 {
-    sScene.camera = cameraCreate(width, height, to_radians(45.0), 0.01, 500.0, {10.0, 10.0, 10.0}, {0.0, 0.0, 0.0});
+    sScene.camera = cameraCreate(width, height, to_radians(45.0), 0.01, 500.0, {40.0, 3.0, 0.0}, {0.0, 0.0, 0.0});
     sScene.cameraFollowBoat = true;
     sScene.zoomSpeedMultiplier = 0.05f;
 
@@ -125,7 +125,7 @@ void sceneInit(float width, float height)
     sScene.water = modelLoad("assets/water/water.obj").front();
 
     sScene.shaderBoat = shaderLoad("shader/default.vert", "shader/color.frag");
-    sScene.shaderWater = shaderLoad("shader/default.vert", "shader/color.frag");
+    sScene.shaderWater = shaderLoad("shader/water.vert", "shader/color.frag");
 }
 
 void sceneUpdate(float dt)
@@ -172,6 +172,7 @@ void render()
         shaderUniform(sScene.shaderWater, "uProj",  proj);
         shaderUniform(sScene.shaderWater, "uView",  view);
         shaderUniform(sScene.shaderWater, "uModel", Matrix4D::identity());
+        shaderUniform(sScene.shaderWater, "u_lastTime", sScene.waterSim.accumTime);
 
         /* set material properties */
         shaderUniform(sScene.shaderWater, "uMaterial.diffuse", sScene.water.material.front().diffuse);
