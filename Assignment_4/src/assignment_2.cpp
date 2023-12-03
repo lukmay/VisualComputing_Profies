@@ -137,7 +137,6 @@ void sceneUpdate(float dt)
     if (!sScene.cameraFollowBoat)
         cameraFollow(sScene.camera, sScene.boat.position);
 }
-
 void render()
 {
     /* setup camera and model matrices */
@@ -172,8 +171,11 @@ void render()
         shaderUniform(sScene.shaderWater, "uProj",  proj);
         shaderUniform(sScene.shaderWater, "uView",  view);
         shaderUniform(sScene.shaderWater, "uModel", Matrix4D::identity());
+        /*setup waterSim parameter for water-vertex shader*/
         shaderUniform(sScene.shaderWater, "u_lastTime", sScene.waterSim.accumTime);
-
+        shaderUniform(sScene.shaderWater, "u_direction_0", sScene.waterSim.parameter[0].direction);
+        shaderUniform(sScene.shaderWater, "u_direction_1", sScene.waterSim.parameter[1].direction);
+        shaderUniform(sScene.shaderWater, "u_direction_2", sScene.waterSim.parameter[2].direction);
         /* set material properties */
         shaderUniform(sScene.shaderWater, "uMaterial.diffuse", sScene.water.material.front().diffuse);
 
