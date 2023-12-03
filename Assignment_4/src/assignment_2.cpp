@@ -158,6 +158,9 @@ void render()
         {
             /* set material properties */
             shaderUniform(sScene.shaderBoat, "uMaterial.diffuse", material.diffuse);
+            shaderUniform(sScene.shaderBoat, "uMaterial.ambient", material.ambient);
+            shaderUniform(sScene.shaderBoat, "uMaterial.specular", material.specular);
+            shaderUniform(sScene.shaderBoat, "uMaterial.shininess", material.shininess);
 
             glDrawElements(GL_TRIANGLES, material.indexCount, GL_UNSIGNED_INT, (const void*) (material.indexOffset*sizeof(unsigned int)) );
         }
@@ -178,6 +181,9 @@ void render()
         shaderUniform(sScene.shaderWater, "u_direction_2", sScene.waterSim.parameter[2].direction);
         /* set material properties */
         shaderUniform(sScene.shaderWater, "uMaterial.diffuse", sScene.water.material.front().diffuse);
+        shaderUniform(sScene.shaderWater, "uMaterial.ambient", sScene.water.material.front().ambient);
+        shaderUniform(sScene.shaderWater, "uMaterial.specular", sScene.water.material.front().specular);
+        shaderUniform(sScene.shaderWater, "uMaterial.shininess", sScene.water.material.front().shininess);
 
         glBindVertexArray(sScene.water.mesh.vao);
         glDrawElements(GL_TRIANGLES, sScene.water.material.front().indexCount, GL_UNSIGNED_INT, (const void*) (sScene.water.material.front().indexOffset*sizeof(unsigned int)) );
