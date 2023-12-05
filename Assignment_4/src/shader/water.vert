@@ -24,55 +24,39 @@ float wave(float distance1, float distance2, float distance3)
 }
 float distance1(vec4 vertex)
 {
-    return vertex.x * u_direction_0.x + vertex.z * u_direction_0.y;
+    return dot(vertex.xz, u_direction_0);
 }
 float distance2(vec4 vertex)
 {
-    return vertex.x * u_direction_1.x + vertex.z * u_direction_1.y;
+    return dot(vertex.xz, u_direction_1);
 }
 float distance3(vec4 vertex)
 {
-    return vertex.x * u_direction_2.x + vertex.z * u_direction_2.y;
+    return dot(vertex.xz, u_direction_2);
 }
 
-float dwave(float distance1, float distance2, float distance3)
+float dxwave(float distance1, float distance2, float distance3)
 {
-    return cos(0.25 * distance1 * 0.5 + u_lastTime) * 0.6 +
-    cos(0.1 * distance2 * 0.25 + u_lastTime) * 0.7 +
-    cos(0.9 * distance3 * 0.9 + u_lastTime) * 0.1;
+    return cos(0.25 * distance1 * 0.5 + u_lastTime) * 0.6 * 0.25 * u_direction_0.x +
+    cos(0.1 * distance2 * 0.25 + u_lastTime) * 0.7 * 0.1 * u_direction_1.x +
+    cos(0.9 * distance3 * 0.9 + u_lastTime) * 0.1 * 0.9 * u_direction_2.x;
 }
-float dxdistance1(vec4 vertex)
+float dzwave(float distance1, float distance2, float distance3)
 {
-    return u_direction_0.x + vertex.z * u_direction_0.y;
-}
-float dxdistance2(vec4 vertex)
-{
-    return u_direction_1.x + vertex.z * u_direction_1.y;
-}
-float dxdistance3(vec4 vertex)
-{
-    return u_direction_2.x + vertex.z * u_direction_2.y;
-}
-float dzdistance1(vec4 vertex)
-{
-    return vertex.x * u_direction_0.x + u_direction_0.y;
-}
-float dzdistance2(vec4 vertex)
-{
-    return vertex.x * u_direction_1.x + u_direction_1.y;
-}
-float dzdistance3(vec4 vertex)
-{
-    return vertex.x * u_direction_2.x + u_direction_2.y;
+    return cos(0.25 * distance1 * 0.5 + u_lastTime) * 0.6 * 0.25 * u_direction_0.y +
+    cos(0.1 * distance2 * 0.25 + u_lastTime) * 0.7 * 0.1 * u_direction_1.y +
+    cos(0.9 * distance3 * 0.9 + u_lastTime) * 0.1 * 0.9 * u_direction_2.y;
 }
 void main(void)
 {
     vec4 vertex = vec4(aPosition, 1.0);
 
-    vertex.y += wave(distance1(vertex), distance2(vertex), distance3(vertex));
+    vertex.y = wave(distance1(vertex), distance2(vertex), distance3(vertex));
     gl_Position = uProj * uView * uModel * vertex;
     tFragPos = vec3(uModel * vertex);
-    tNormal = normalize(cross(vec3(1, 0, dwave(dxdistance1(vertex), dxdistance2(vertex), dxdistance3(vertex))),
-                                vec3(0, 1, dwave(dzdistance1(vertex), dzdistance2(vertex), dzdistance3(vertex)))) * aNormal); //mat3(transpose(inverse(uModel))) * aNormal;
-    tUV = aUV;
+    tNormal = normalize(cross(vec3(1, dxwave(distance1(vertex), distance2(vertex), distance3(vertex)), 0),
+                                vec3(0, dzwave(distance1(vertex), distance2(vertex), distance3(vertex)), 1))); //mat3(transpose(inverse(uModel))) * aNormal;
+
+
+    tUV = aPosition.xz;
 }
