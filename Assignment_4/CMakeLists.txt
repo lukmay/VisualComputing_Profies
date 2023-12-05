@@ -64,7 +64,9 @@ file(GLOB_RECURSE SHADER src/*.vert src/*.frag)
 source_group(TREE  ${CMAKE_CURRENT_SOURCE_DIR}
              FILES ${SRC} ${HDR} ${SHADER})
 
-add_executable(assignment_02 ${SRC} ${HDR} ${SHADER})
+add_executable(assignment_02 ${SRC} ${HDR} ${SHADER}
+        src/mygl/light.cpp
+        src/mygl/light.h)
 target_link_libraries(assignment_02 OpenGL::GL glfw glad stb_image)
 target_include_directories(assignment_02 PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 target_compile_features(assignment_02 PUBLIC cxx_std_20)

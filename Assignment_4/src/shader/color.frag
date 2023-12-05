@@ -10,7 +10,22 @@ struct Material
 
 struct Light
 {
+    float ambientCoeff;
+    float diffuseCoeff;
+    float specularCoeff;
+    vec3 ambientColor;
     vec3 color;
+    vec3 direction;
+};
+
+struct Surface
+{
+    vec3 normal;
+    vec3 fragPos;
+};
+
+struct Camera
+{
     vec3 position;
 };
 
@@ -21,21 +36,26 @@ in vec3 tViewDir;
 out vec4 FragColor;
 
 uniform Material uMaterial;
-uniform Light uLight[4];
-uniform vec3 uViewPos;
+uniform Light uLight;
+uniform Camera uCamera;
+
+vec3 blinnPhongIllumination(in Surface surface, in Light light, in Material material, in Camera camera){
+    /* ambient */
+    vec3 ambient = light.ambientCoeff * material.ambient * light.ambientColor;
+    /* diffuse */
+    vec3 diffuse = light.diffuseCoeff * material.diffuse * light.color * clamp(dot(surface.normal, normalize(light.direction)), 0.0f, 1.0f);
+    /* specular */
+    vec3 halfway = normalize(normalize(surface.fragPos - camera.position) - normalize(light.direction));
+    vec3 specular = light.specularCoeff * material.specular * light.color * pow(dot(surface.normal, halfway), material.shininess);
+
+    return ambient + diffuse + specular;
+}
 
 void main(void)
 {
-    int ambientCoeff = 1;
-    vec3 ambient = ambientCoeff * uMaterial.diffuse * uLight[0].color;
 
-    int diffuseCoeff = 1;
-    vec3 diffuse = diffuseCoeff * uMaterial.diffuse * uLight[1].color * max(0.0f, dot(normalize(tNormal), normalize(uLight[0].position - tFragPos)));
+    Surface surface = Surface(normalize(-tNormal), tFragPos);
 
-    int specularCoeff = 1;
-    vec3 viewDir = normalize(tViewDir);
-    vec3 halfway = normalize(dot(normalize(tNormal), normalize(uLight[1].position)) + viewDir);
-    vec3 specular = specularCoeff * uMaterial.diffuse * uLight[2].color * pow(max(0.0f, dot(normalize(tNormal), halfway)), uMaterial.shininess);
-
-    FragColor = vec4(ambient + diffuse + specular, 1.0);
+    vec3 illumination = blinnPhongIllumination(surface, uLight, uMaterial, uCamera);
+    FragColor = vec4(illumination, 1.0);
 }
