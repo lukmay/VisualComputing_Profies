@@ -18,9 +18,9 @@ out vec2 tUV;
 
 float wave(float distance1, float distance2, float distance3)
 {
-    return sin(0.25 * distance1 * 0.5 + u_lastTime) * 0.6 +
-    sin(0.1 * distance2 * 0.25 + u_lastTime) * 0.7 +
-    sin(0.9 * distance3 * 0.9 + u_lastTime) * 0.1;
+    return sin(0.25 * distance1 + 0.5 * u_lastTime) * 0.6 +
+    sin(0.1 * distance2 + 0.25 * u_lastTime) * 0.7 +
+    sin(0.9 * distance3 + 0.9 * u_lastTime) * 0.1;
 }
 float distance1(vec4 vertex)
 {
@@ -37,9 +37,9 @@ float distance3(vec4 vertex)
 
 float dxwave(float distance1, float distance2, float distance3)
 {
-    return cos(0.25 * distance1 * 0.5 + u_lastTime) * 0.6 * 0.25 * u_direction_0.x +
-    cos(0.1 * distance2 * 0.25 + u_lastTime) * 0.7 * 0.1 * u_direction_1.x +
-    cos(0.9 * distance3 * 0.9 + u_lastTime) * 0.1 * 0.9 * u_direction_2.x;
+    return cos(0.25 * distance1 + 0.5 * u_lastTime) * 0.6 * 0.25 * u_direction_0.x +
+    cos(0.1 * distance2 + 0.25 * u_lastTime) * 0.7 * 0.1 * u_direction_1.x +
+    cos(0.9 * distance3 + 0.9 * u_lastTime) * 0.1 * 0.9 * u_direction_2.x;
 }
 float dzwave(float distance1, float distance2, float distance3)
 {
