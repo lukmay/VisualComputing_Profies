@@ -10,6 +10,7 @@ struct Light
   float ambientCoeff;
   float diffuseCoeff;
   float specularCoeff;
+  Vector3D background;
 };
 
 Light createLight();

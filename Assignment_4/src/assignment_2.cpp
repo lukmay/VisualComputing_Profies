@@ -169,7 +169,7 @@ void render() {
     for (auto &material : model.material) {
       /* set material properties */
       shaderUniform(sScene.shaderBoat, "uMaterial.diffuse", material.diffuse);
-      shaderUniform(sScene.shaderBoat, "uMaterial.ambient", material.diffuse);
+      shaderUniform(sScene.shaderBoat, "uMaterial.ambient", material.ambient);
       shaderUniform(sScene.shaderBoat, "uMaterial.specular", material.specular);
       shaderUniform(sScene.shaderBoat, "uMaterial.shininess",
                     material.shininess);
@@ -205,7 +205,7 @@ void render() {
     shaderUniform(sScene.shaderWater, "uMaterial.diffuse",
                   sScene.water.material.front().diffuse);
     shaderUniform(sScene.shaderWater, "uMaterial.ambient",
-                  sScene.water.material.front().diffuse);
+                  sScene.water.material.front().ambient);
     shaderUniform(sScene.shaderWater, "uMaterial.specular",
                   sScene.water.material.front().specular);
     shaderUniform(sScene.shaderWater, "uMaterial.shininess",
@@ -233,7 +233,7 @@ void render() {
 }
 
 void sceneDraw() {
-  glClearColor(135.0 / 255, 206.0 / 255, 235.0 / 255, 1.0);
+  glClearColor(sScene.light.background.x, sScene.light.background.y, sScene.light.background.z , 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 

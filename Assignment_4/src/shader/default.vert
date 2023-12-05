@@ -7,18 +7,15 @@ layout(location = 2) in vec2 aUV;
 uniform mat4 uModel;
 uniform mat4 uView;
 uniform mat4 uProj;
-uniform vec3 uViewPos;
 
 out vec3 tNormal;
 out vec3 tFragPos;
 out vec2 tUV;
-out vec3 tViewDir;
 
 void main(void)
 {
     gl_Position = uProj * uView * uModel * vec4(aPosition, 1.0);
     tFragPos = vec3(uModel * vec4(aPosition, 1.0));
-    tNormal = mat3(transpose(inverse(uModel))) * aNormal;
+    tNormal = -(mat3(transpose(inverse(uModel))) * aNormal);
     tUV = aUV;
-    tViewDir = uViewPos - tFragPos;
 }

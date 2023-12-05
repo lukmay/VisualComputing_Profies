@@ -8,19 +8,21 @@ Light createLight(){
 }
 
 void setDayLight(Light &light){
-  light.ambientColor = Vector3D(1.0f,1.0f,1.0f);
-  light.color = Vector3D(0.8f,0.8f,0.8f);
-  light.direction = Vector3D(1.0f,1.0f,0.0f);
+  light.ambientColor = Vector3D(1.0f,0.9f,0.9f);
+  light.color = Vector3D(0.7f,0.7f,0.7f);
+  light.direction = Vector3D(-1.0f,1.0f,0.0f);
   light.ambientCoeff = 1.0f;
-  light.diffuseCoeff = 1.0f;
-  light.specularCoeff = 1.0f;
+  light.diffuseCoeff = 0.7f;
+  light.specularCoeff = 0.3f;
+  light.background = Vector3D(0.53f,0.81f,0.95f);
 }
 
 void setNightLight(Light &light){
-  light.ambientColor = Vector3D(0.4f,0.4f,0.4f);
-  light.color = Vector3D(1.0f,1.0f,1.0f);
-  light.direction = Vector3D(1.0f,1.0f,0.0f);
+  light.ambientColor = Vector3D(0.6f,0.6f,0.6f);
+  light.color = Vector3D(0.7f,0.7f,0.7f);
+  light.direction = Vector3D(-1.0f,1.0f,0.0f);
   light.ambientCoeff = 1.0f;
-  light.diffuseCoeff = 1.0f;
-  light.specularCoeff = 1.0f;
+  light.diffuseCoeff = 0.6f;
+  light.specularCoeff = 0.4f;
+  light.background = Vector3D(0.04f,0.04f,0.18f);
 }
