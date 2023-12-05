@@ -24,5 +24,5 @@ void setNightLight(Light &light){
   light.ambientCoeff = 1.0f;
   light.diffuseCoeff = 0.6f;
   light.specularCoeff = 0.4f;
-  light.background = Vector3D(0.04f,0.04f,0.18f);
+  light.background = Vector3D(0.23f,0.51f,0.80f);
 }
