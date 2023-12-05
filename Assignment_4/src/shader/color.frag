@@ -54,7 +54,7 @@ vec3 blinnPhongIllumination(in Surface surface, in Light light, in Material mate
 void main(void)
 {
 
-    Surface surface = Surface(normalize(-tNormal), tFragPos);
+    Surface surface = Surface(normalize(tNormal), tFragPos);
 
     vec3 illumination = blinnPhongIllumination(surface, uLight, uMaterial, uCamera);
     FragColor = vec4(illumination, 1.0);
