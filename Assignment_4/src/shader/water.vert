@@ -54,7 +54,7 @@ void main(void)
     vertex.y = wave(distance1(vertex), distance2(vertex), distance3(vertex));
     gl_Position = uProj * uView * uModel * vertex;
     tFragPos = vec3(uModel * vertex);
-    tNormal = normalize(cross(vec3(1, dxwave(distance1(vertex), distance2(vertex), distance3(vertex)), 0),
+    tNormal = normalize(cross(-(vec3(1, dxwave(distance1(vertex), distance2(vertex), distance3(vertex)), 0)),
                                 vec3(0, dzwave(distance1(vertex), distance2(vertex), distance3(vertex)), 1))); //mat3(transpose(inverse(uModel))) * aNormal;
     tUV = aUV;
 }

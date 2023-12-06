@@ -16,6 +16,6 @@ void main(void)
 {
     gl_Position = uProj * uView * uModel * vec4(aPosition, 1.0);
     tFragPos = vec3(uModel * vec4(aPosition, 1.0));
-    tNormal = -(mat3(transpose(inverse(uModel))) * aNormal);
+    tNormal = mat3(transpose(inverse(uModel))) * aNormal;
     tUV = aUV;
 }

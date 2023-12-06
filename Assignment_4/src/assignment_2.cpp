@@ -188,7 +188,8 @@ void render() {
     shaderUniform(sScene.shaderWater, "uProj", proj);
     shaderUniform(sScene.shaderWater, "uView", view);
     shaderUniform(sScene.shaderWater, "uModel", Matrix4D::identity());
-    shaderUniform(sScene.shaderWater, "uCamera.position", sScene.camera.position);
+    shaderUniform(sScene.shaderWater, "uCamera.position",
+                  sScene.camera.position);
     /* Set shader for light */
     shaderUniform(sScene.shaderWater, "uLight.ambientColor",
                   sScene.light.ambientColor);
@@ -233,9 +234,9 @@ void render() {
 }
 
 void sceneDraw() {
-  glClearColor(sScene.light.background.x, sScene.light.background.y, sScene.light.background.z , 1.0f);
+  glClearColor(sScene.light.background.x, sScene.light.background.y,
+               sScene.light.background.z, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
   /*------------ render scene -------------*/
   render();
