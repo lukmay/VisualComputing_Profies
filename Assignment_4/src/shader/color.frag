@@ -16,6 +16,8 @@ struct Light
     vec3 ambientColor;
     vec3 color;
     vec3 direction;
+    float cutOff;
+    vec3 position;
 };
 
 struct Camera
@@ -32,17 +34,19 @@ out vec4 FragColor;
 uniform Material uMaterial;
 uniform Light uLight;
 uniform Camera uCamera;
+uniform Light frontLight;
 
 
 void main(void)
 {
+    float theta = dot(normalize(frontLight.position - tFragPos), normalize(-frontLight.direction));
+
     vec3 ambient = uLight.ambientCoeff * uMaterial.ambient * uMaterial.diffuse * uLight.ambientColor;
     vec3 diffuse = uLight.diffuseCoeff * uMaterial.diffuse * uLight.color * clamp(dot((normalize(tNormal)), normalize(uLight.direction)),0.0f ,1.0f);
 
     vec3 halfway = normalize(normalize(tFragPos + uCamera.position) + normalize(uLight.direction));
     vec3 specular = uLight.specularCoeff * uMaterial.specular * uLight.color * pow(dot(normalize(tNormal), halfway), uMaterial.shininess);
 
-    vec3 illumination = ambient + diffuse + specular;
-
+    vec3 illumination = theta > frontLight.cutOff ? (ambient + diffuse + specular) + (frontLight.color * 0.1 ): (ambient + diffuse + specular);
     FragColor = vec4(illumination, 1.0);
 }

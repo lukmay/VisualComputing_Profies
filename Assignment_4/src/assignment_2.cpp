@@ -18,7 +18,7 @@ struct {
   Model water;
   Light light;
   bool isNight;
-
+  Light frontLight;
   ShaderProgram shaderBoat;
   ShaderProgram shaderWater;
 
@@ -160,6 +160,14 @@ void render() {
   shaderUniform(sScene.shaderBoat, "uLight.specularCoeff",
                 sScene.light.specularCoeff);
 
+  /*Light on the boat*/
+
+    shaderUniform(sScene.shaderWater, "frontLight.color", Vector3D{1.0f, 1.0f, 1.0f});
+    shaderUniform(sScene.shaderWater, "frontLight.direction", Vector3D{1.0f, -2.0f, 0.0f});
+    shaderUniform(sScene.shaderWater, "frontLight.position", Vector3D{0.0f, 4.0f, 0.0f});
+    shaderUniform(sScene.shaderWater, "frontLight.cutOff", cos(75.5f * M_PIf/180));
+
+
   for (unsigned int i = 0; i < sScene.boat.partModel.size(); i++) {
     auto &model = sScene.boat.partModel[i];
     glBindVertexArray(model.mesh.vao);
@@ -220,6 +228,13 @@ void render() {
                   sScene.waterSim.parameter[1].direction);
     shaderUniform(sScene.shaderWater, "u_direction_2",
                   sScene.waterSim.parameter[2].direction);
+
+      /*Light on the boat*/
+
+      shaderUniform(sScene.shaderWater, "frontLight.color", Vector3D{1.0f, 1.0f, 1.0f});
+      shaderUniform(sScene.shaderWater, "frontLight.direction", Vector3D{1.0f, -2.0f, 0.0f});
+      shaderUniform(sScene.shaderWater, "frontLight.position", Vector3D{0.0f, 4.0f, 0.0f});
+      shaderUniform(sScene.shaderWater, "frontLight.cutOff", cos(75.5f * M_PIf/180));
 
     glBindVertexArray(sScene.water.mesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.water.material.front().indexCount,
