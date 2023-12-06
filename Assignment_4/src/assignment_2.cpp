@@ -18,7 +18,6 @@ struct {
   Model water;
   Light light;
   bool isNight;
-  Light frontLight;
   ShaderProgram shaderBoat;
   ShaderProgram shaderWater;
 
@@ -160,19 +159,56 @@ void render() {
   shaderUniform(sScene.shaderBoat, "uLight.specularCoeff",
                 sScene.light.specularCoeff);
 
-  Matrix3D lightDirectionRot = Matrix3D(cos(90.0f), 0, sin(90.0f),
-                                        0, 1, 0,
-                                        -sin(90.0f), 0, cos(90.0f));
-    shaderUniform(sScene.shaderWater, "uFrontLight1.color", Vector3D{1.0f, 1.0f, 1.0f});
-    shaderUniform(sScene.shaderWater, "uFrontLight1.direction", normalize(lightDirectionRot * Vector3D{ sScene.boat.transformation[0][0], sScene.boat.transformation[0][1], sScene.boat.transformation[0][2]}));
-    shaderUniform(sScene.shaderWater, "uFrontLight1.position", Vector3D{sScene.boat.position.x + 0.5f, sScene.boat.position.y + 1.0f, sScene.boat.position.z + 0.0f});
-    shaderUniform(sScene.shaderWater, "uFrontLight1.cutOff", cos(70.5f * M_PIf/180));
-    /*
-    printf("%f, %f, %f, %f\n", sScene.boat.transformation[0][0], sScene.boat.transformation[0][1], sScene.boat.transformation[0][2], sScene.boat.transformation[0][3]);
-    printf("%f, %f, %f, %f\n", sScene.boat.transformation[1][0], sScene.boat.transformation[1][1], sScene.boat.transformation[1][2], sScene.boat.transformation[1][3]);
-    printf("%f, %f, %f, %f\n", sScene.boat.transformation[2][0], sScene.boat.transformation[2][1], sScene.boat.transformation[2][2], sScene.boat.transformation[2][3]);
-    printf("---------------------------------------------------------\n");
-     */
+  Matrix3D lightDirectionRot1 =
+      Matrix3D(cos(M_PI_2f), 0, sin(M_PI_2f), 0, 1, 0, -sin(M_PI_2f), 0, cos(M_PI_2f));
+
+  Matrix3D lightDirectionRot2 =
+      Matrix3D(cos(M_PI_2f), 0, sin(M_PI_2f), 0, 1, 0, -sin(M_PI_2f), 0, cos(M_PI_2f));
+
+  /* frontlight 1 */
+  shaderUniform(sScene.shaderBoat, "uFrontLight1.color",
+                Vector3D{1.0f, 1.0f, 1.0f});
+  shaderUniform(sScene.shaderBoat, "uFrontLight1.direction",
+                normalize(lightDirectionRot1 *
+                          Vector3D{sScene.boat.transformation[0][0],
+                                   sScene.boat.transformation[0][1],
+                                   sScene.boat.transformation[0][2]}));
+  shaderUniform(sScene.shaderBoat, "uFrontLight1.position",
+                Vector3D{sScene.boat.position.x + 1.0f,
+                         sScene.boat.position.y + 1.0f,
+                         sScene.boat.position.z + 0.0f});
+  shaderUniform(sScene.shaderBoat, "uFrontLight1.cutOff",
+                cos(75.0f * M_PIf / 180));
+
+  /* frontlight 2 */
+  shaderUniform(sScene.shaderBoat, "uFrontLight2.color",
+                Vector3D{1.0f, 1.0f, 1.0f});
+  shaderUniform(sScene.shaderBoat, "uFrontLight2.direction",
+                normalize(lightDirectionRot2 *
+                          Vector3D{sScene.boat.transformation[0][0],
+                                   sScene.boat.transformation[0][1],
+                                   sScene.boat.transformation[0][2]}));
+  shaderUniform(sScene.shaderBoat, "uFrontLight2.position",
+                Vector3D{sScene.boat.position.x - 1.0f,
+                         sScene.boat.position.y + 1.0f,
+                         sScene.boat.position.z});
+  shaderUniform(sScene.shaderBoat, "uFrontLight2.cutOff",
+                cos(75.0f * M_PIf / 180));
+
+  /* red light on left-hand side of boat */
+  shaderUniform(sScene.shaderBoat, "uRedLight.color",
+                Vector3D{1.0f, 0.0f, 0.0f});
+  shaderUniform(sScene.shaderBoat, "uRedLight.direction",
+                normalize(Vector3D{sScene.boat.transformation[0][0],
+                                   sScene.boat.transformation[0][1],
+                                   sScene.boat.transformation[0][2]}));
+  shaderUniform(sScene.shaderBoat, "uRedLight.position",
+                Vector3D{sScene.boat.position.x - 0.5f,
+                         sScene.boat.position.y + 1.0f,
+                         sScene.boat.position.z});
+  shaderUniform(sScene.shaderBoat, "uRedLight.cutOff",
+                cos(10.0f * M_PIf / 180));
+
   for (unsigned int i = 0; i < sScene.boat.partModel.size(); i++) {
     auto &model = sScene.boat.partModel[i];
     glBindVertexArray(model.mesh.vao);
@@ -196,14 +232,54 @@ void render() {
   /* render water */
   {
     glUseProgram(sScene.shaderWater.id);
-      /*Light on the boat*/
+    /*Light on the boat*/
 
-      shaderUniform(sScene.shaderWater, "uFrontLight1.color", Vector3D{1.0f, 1.0f, 1.0f});
-      shaderUniform(sScene.shaderWater, "uFrontLight1.direction", normalize(lightDirectionRot * Vector3D{ sScene.boat.transformation[0][0], sScene.boat.transformation[0][1], sScene.boat.transformation[0][2]}));
-      shaderUniform(sScene.shaderWater, "uFrontLight1.position", Vector3D{sScene.boat.position.x + 0.5f, sScene.boat.position.y + 1.0f, sScene.boat.position.z + 0.0f});
-      shaderUniform(sScene.shaderWater, "uFrontLight1.cutOff", cos(70.5f * M_PIf/180));
+    /* frontlight 1 */
+    shaderUniform(sScene.shaderWater, "uFrontLight1.color",
+                  Vector3D{1.0f, 1.0f, 1.0f});
+    shaderUniform(sScene.shaderWater, "uFrontLight1.direction",
+                  normalize(lightDirectionRot1 *
+                            Vector3D{sScene.boat.transformation[0][0],
+                                     sScene.boat.transformation[0][1],
+                                     sScene.boat.transformation[0][2]}));
+    shaderUniform(sScene.shaderWater, "uFrontLight1.position",
+                  Vector3D{sScene.boat.position.x + 1.0f,
+                           sScene.boat.position.y + 1.0f,
+                           sScene.boat.position.z + 0.0f});
+    shaderUniform(sScene.shaderWater, "uFrontLight1.cutOff",
+                  cos(75.0f * M_PIf / 180));
 
-      /* setup camera and model matrices */
+    /* frontlight 2 */
+    shaderUniform(sScene.shaderWater, "uFrontLight2.color",
+                  Vector3D{1.0f, 1.0f, 1.0f});
+    shaderUniform(sScene.shaderWater, "uFrontLight2.direction",
+                  normalize(lightDirectionRot2 *
+                            Vector3D{sScene.boat.transformation[0][0],
+                                     sScene.boat.transformation[0][1],
+                                     sScene.boat.transformation[0][2]}));
+    shaderUniform(sScene.shaderWater, "uFrontLight2.position",
+                  Vector3D{sScene.boat.position.x - 1.0f,
+                           sScene.boat.position.y + 1.0f,
+                           sScene.boat.position.z});
+    shaderUniform(sScene.shaderWater, "uFrontLight2.cutOff",
+                  cos(75.0f * M_PIf / 180));
+
+    /* red light on the left-hand side */
+    shaderUniform(sScene.shaderWater, "uRedLight.color",
+                  Vector3D{1.0f, 0.0f, 0.0f});
+    shaderUniform(sScene.shaderWater, "uRedLight.direction",
+                  normalize(Vector3D{sScene.boat.transformation[0][0],
+                                     sScene.boat.transformation[0][1],
+                                     sScene.boat.transformation[0][2]}));
+    shaderUniform(sScene.shaderWater, "uRedLight.position",
+                  Vector3D{sScene.boat.position.x + 0.7f,
+                           sScene.boat.position.y + 1.0f,
+                           sScene.boat.position.z + 0.0f});
+    shaderUniform(sScene.shaderWater, "uRedLight.cutOff",
+                  cos(10.0f * M_PIf / 180));
+
+
+    /* setup camera and model matrices */
     shaderUniform(sScene.shaderWater, "uProj", proj);
     shaderUniform(sScene.shaderWater, "uView", view);
     shaderUniform(sScene.shaderWater, "uModel", Matrix4D::identity());
@@ -239,7 +315,6 @@ void render() {
                   sScene.waterSim.parameter[1].direction);
     shaderUniform(sScene.shaderWater, "u_direction_2",
                   sScene.waterSim.parameter[2].direction);
-
 
     glBindVertexArray(sScene.water.mesh.vao);
     glDrawElements(GL_TRIANGLES, sScene.water.material.front().indexCount,
