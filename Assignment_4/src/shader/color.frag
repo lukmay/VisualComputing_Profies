@@ -67,12 +67,12 @@ void main(void)
     vec3 illumination = ambient + diffuse + specular;
 
     if(theta1 > uFrontLight1.cutOff){
-        illumination += uFrontLight1.color * 0.4f * attenuation1;
+        illumination += uFrontLight1.color * 0.4f * attenuation1 * uMaterial.diffuse;
     }
 
     if(theta2 > uFrontLight2.cutOff){
         illumination += uFrontLight2.color * 0.4f *
-        attenuation2;
+        attenuation2 * uMaterial.diffuse;
     }
     if(theta3 > uRedLight.cutOff){
         illumination += uRedLight.color * 1.0f * attenuation3;
