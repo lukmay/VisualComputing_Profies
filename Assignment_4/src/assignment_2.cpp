@@ -174,7 +174,7 @@ void render() {
   shaderUniform(sScene.shaderBoat, "uFrontLight1.direction",
                 normalize(lightDirectionRot1 *
                           Vector3D{sScene.boat.transformation[0][0],
-                                   sScene.boat.transformation[0][1],
+                                   sScene.boat.transformation[0][1] - 0.6f,
                                    sScene.boat.transformation[0][2]}));
   shaderUniform(sScene.shaderBoat, "uFrontLight1.position",
                 Vector3D{sScene.boat.position.x + 1.0f,
@@ -189,7 +189,7 @@ void render() {
   shaderUniform(sScene.shaderBoat, "uFrontLight2.direction",
                 normalize(lightDirectionRot2 *
                           Vector3D{sScene.boat.transformation[0][0],
-                                   sScene.boat.transformation[0][1],
+                                   sScene.boat.transformation[0][1] - 0.6f,
                                    sScene.boat.transformation[0][2]}));
   shaderUniform(sScene.shaderBoat, "uFrontLight2.position",
                 Vector3D{sScene.boat.position.x - 1.0f,
@@ -258,7 +258,7 @@ void render() {
     shaderUniform(sScene.shaderWater, "uFrontLight1.direction",
                   normalize(lightDirectionRot1 *
                             Vector3D{sScene.boat.transformation[0][0],
-                                     sScene.boat.transformation[0][1],
+                                     sScene.boat.transformation[0][1] - 0.6f,
                                      sScene.boat.transformation[0][2]}));
     shaderUniform(sScene.shaderWater, "uFrontLight1.position",
                   Vector3D{sScene.boat.position.x + 1.0f,
@@ -273,7 +273,7 @@ void render() {
     shaderUniform(sScene.shaderWater, "uFrontLight2.direction",
                   normalize(lightDirectionRot1 *
                             Vector3D{sScene.boat.transformation[0][0],
-                                     sScene.boat.transformation[0][1],
+                                     sScene.boat.transformation[0][1] - 0.6f,
                                      sScene.boat.transformation[0][2]}));
     shaderUniform(sScene.shaderWater, "uFrontLight2.position",
                   Vector3D{sScene.boat.position.x - 1.0f,
