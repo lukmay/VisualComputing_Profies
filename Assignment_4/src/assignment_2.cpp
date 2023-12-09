@@ -250,7 +250,7 @@ void render() {
   /* render water */
   {
     glUseProgram(sScene.shaderWater.id);
-    /*Light on the boat*/
+    /*Light on the water*/
 
     /* frontlight 1 */
     shaderUniform(sScene.shaderWater, "uFrontLight1.color",
