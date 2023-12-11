@@ -13,6 +13,9 @@ The following section gives an overview of accepted key / mouse inputs for the a
 * Left click: By holding the left mouse button you can move the camera around
 * Mouse wheel up: Zoom out
 * Mouse wheel down: Zoom in
+### Day / Night control
+* 4: Day
+* 5: Night
 
 ## Contributers
 * Stefan Huter
