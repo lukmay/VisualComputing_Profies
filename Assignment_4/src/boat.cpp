@@ -45,3 +45,4 @@ void boatMove(Boat& boat, const WaterSim& waterSim, bool control[], float dt)
 
     boat.transformation = Matrix4D::translation(boat.position) * water_orientation;
 }
+//Vector2D(boat.position.x, boat.position.z)
