@@ -1,0 +1,107 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl Glass
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd gemiLow_GreenLight_AlbedoTransparency.png
+map_Ks gemiLow_Glass_MetallicSmoothness.png
+map_Ka white.png
+map_bump gemiLow_Glass_Normal_baked.png
+map_Ke black.png
+
+newmtl GreenLight
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.050175 0.800000 0.037927
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd gemiLow_GreenLight_AlbedoTransparency.png
+map_Ks gemiLow_GreenLight_MetallicSmoothness.png
+map_Ka white.png
+map_bump gemiLow_Glass_Normal_baked.png
+map_Ke black.png
+
+newmtl MainColor
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.292325 0.310869 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd gemiLow_MainColor_AlbedoTransparency.png
+map_Ks gemiLow_MainColor_MetallicSmoothness.png
+map_Ka gemiLow_MainColor_Ambient.png
+map_bump gemiLow_MainColor_Normal_baked.png
+map_Ke black.png
+
+newmtl Metal
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.149153 0.149153 0.149153
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd gemiLow_Metal_AlbedoTransparency.png
+map_Ks gemiLow_Metal_MetallicSmoothness.png
+map_Ka gemiLow_Metal_Ambient.png
+map_bump gemiLow_Metal_Normal_baked.png
+map_Ke black.png
+
+newmtl Plastic
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.464361 0.646534
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd gemiLow_Plastic_AlbedoTransparency.png
+map_Ks gemiLow_Plastic_MetallicSmoothness.png
+map_Ka gemiLow_Plastic_Ambient.png
+map_bump gemiLow_Plastic_Normal_baked.png
+map_Ke black.png
+
+newmtl RedLight
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.008055 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd gemiLow_RedLight_AlbedoTransparency.png
+map_Ks gemiLow_RedLight_MetallicSmoothness.png
+map_Ka white.png
+map_bump gemiLow_Glass_Normal_baked.png
+map_Ke black.png
+
+newmtl Wood
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.385683 0.202696
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd gemiLow_Wood_AlbedoTransparency.png
+map_Ks gemiLow_Wood_MetallicSmoothness.png
+map_Ka gemiLow_Wood_Ambient.png
+map_bump gemiLow_Wood_Normal_baked.png
+map_Ke black.png
